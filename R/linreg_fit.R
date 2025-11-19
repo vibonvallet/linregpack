@@ -1,4 +1,3 @@
-#' Fit an OLS linear model
 #' @export
 linreg_fit <- function(formula, data) {
   mf <- model.frame(formula, data=data)
@@ -12,9 +11,22 @@ linreg_fit <- function(formula, data) {
   sigma2 <- sum(resid^2) / df
   vc = sigma2 * chol2inv(qr.R(qrX))
   se = sqrt(diag(vc))
-  out <- list(coefficients=coef, fitted.values=fitted, residuals=resid,
-              df.residual=df, sigma=sqrt(sigma2), vcov=vc, se=se,
-              call=match.call(), terms=attr(mf, "terms"), model=mf)
+  
+  # Minimal addition: store formula
+  out <- list(
+    coefficients = coef,
+    fitted.values = fitted,
+    residuals = resid,
+    df.residual = df,
+    sigma = sqrt(sigma2),
+    vcov = vc,
+    se = se,
+    call = match.call(),
+    terms = attr(mf, "terms"),
+    model = mf,
+    formula = formula      # <-- added
+  )
+  
   class(out) <- "linregpack"
   out
 }
