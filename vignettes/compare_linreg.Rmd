@@ -1,0 +1,23 @@
+---
+title: "Compare linregpack"
+output: rmarkdown::html_vignette
+---
+
+```{r setup, include=FALSE}
+devtools::install_github("vibonvallet/linregpack")
+library(linregpack)
+```
+
+## Overview
+This vignette demonstrates the basic usage of the linregpack package, which provides a simple implementation of ordinary least squares (OLS) linear regression. The example compares linregpack’s linreg_fit() function to the base R lm() function using the classic iris dataset. The vignette shows how to fit a simple linear regression model and verify that the coefficients match those produced by lm().
+
+## Usage
+```{r}
+fit_lr <- linreg_fit(Sepal.Length ~ Sepal.Width, data=iris)
+fit_lm <- lm(Sepal.Length ~ Sepal.Width, data=iris)
+all.equal(coef(fit_lr), coef(fit_lm))
+```
+
+## Notes
+- linreg_fit() is a lightweight alternative to lm().
+- The all.equal() function confirms that the coefficients from linreg_fit() are identical (or numerically very close) to those from lm().
