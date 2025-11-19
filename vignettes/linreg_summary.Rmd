@@ -1,0 +1,37 @@
+---
+title: "Summarizing Linear Models with linregpack"
+output: rmarkdown::html_vignette
+---
+
+```{r setup, include=FALSE}
+devtools::install_github("vibonvallet/linregpack")
+library(linregpack)
+```
+
+## Overview
+
+The `linreg_summary()` function produces a detailed summary of a linear regression fit, including:
+
+- Coefficients and standard errors
+- R-squared and adjusted R-squared
+- Residual statistics
+
+## Usage
+
+```{r}
+# Fit model
+data <- data.frame(
+  x = 1:10,
+  y = 2*(1:10) + rnorm(10)
+)
+fit <- linreg_fit(y ~ x, data)
+
+# Summary
+summary_out <- linreg_summary(fit)
+print(summary_out)
+```
+
+## Notes
+
+- Useful for comparing fits across datasets.
+- Provides similar output to `summary(lm(...))` for benchmarking.
