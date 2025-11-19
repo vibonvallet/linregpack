@@ -1,0 +1,6 @@
+devtools::install_github("vibonvallet/linregpack")
+
+library(linregpack)
+fit_lr <- linreg_fit(Sepal.Length ~ Sepal.Width, data=iris)
+fit_lm <- lm(Sepal.Length ~ Sepal.Width, data=iris)
+all.equal(coef(fit_lr), coef(fit_lm))
