@@ -3,7 +3,7 @@ Type: Package
 Title: Linear Regression Package
 Version: 0.1.0
 Authors@R: 
-    person("Violette", "Bonvallet", email = "vibon@.com", role = c("aut", "cre"))
+    person("Violette", "Bonvallet", email = "vibon@umich.edu", role = c("aut", "cre"))
 Description: A simple implementation of ordinary least squares regression, designed for comparison to lm().
 Roxygen: list(markdown = TRUE)
 Imports: 
