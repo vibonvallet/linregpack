@@ -1,3 +1,20 @@
+#' Fit a Linear Regression Model
+#'
+#' `linreg_fit` performs ordinary least squares (OLS) regression
+#' on a formula and data frame, returning coefficients, fitted values,
+#' residuals, and model diagnostics.
+#'
+#' @param formula A formula specifying the model, e.g., y ~ x1 + x2
+#' @param data A data frame containing the variables in the formula
+#'
+#' @return A list with components:
+#' \describe{
+#'   \item{coef}{Estimated regression coefficients}
+#'   \item{fitted}{Fitted values from the model}
+#'   \item{resid}{Residuals (observed - fitted)}
+#'   \item{df}{Residual degrees of freedom}
+#' }
+#'
 #' @export
 linreg_fit <- function(formula, data) {
   # Create model frame and matrices
