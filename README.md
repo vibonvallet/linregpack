@@ -3,20 +3,26 @@ linregpack is a R package that implements ordinary least squares (OLS) linear re
 
 ## Installation
 ```r
-# devtools::install_github("yourusername/linregpack")
+# install.packages("devtools")
+devtools::install_github("vibonvallet/linregpack")
 ```
 
 ## Quick Start
 ```r
 library(linregpack)
 
-# Fit model
-fit <- linreg_fit(Sepal.Length ~ Sepal.Width + Petal.Length, data = iris)
+# Simple regression
+x <- 1:10
+y <- 2 + 3*x + rnorm(10)
+df <- data.frame(x = x, y = y)
+fit <- simple_lm(y ~ x, data = df)
 
-# Print results
-fit
-summary(fit)
+fit$coefficients
+fit$r_squared
 
-# Predictions
-predict(fit, newdata = iris[1:5, ])
+# Multiple regression
+df <- data.frame(y = 1:10 + rnorm(10), x1 = 1:10, x2 = 10:1)
+fit2 <- simple_lm(y ~ x1 + x2, data = df)
+fit2$coefficients
+fit2$r_squared
 ```
