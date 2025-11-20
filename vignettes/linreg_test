@@ -1,0 +1,58 @@
+---
+title: "Using linreg_fit"
+author: "Violette Bonvallet"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+%\VignetteIndexEntry{Using linreg_fit}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+The `linreg_fit` function is a lightweight linear regression tool in R, designed for educational purposes.  
+It allows fitting simple or multiple linear regression models using a formula interface, similar to `lm()`.  
+
+It returns a list containing:
+
+- `coefficients`: estimated regression coefficients
+- `fitted.values`: predicted values
+- `residuals`: differences between observed and predicted
+- `r_squared`: coefficient of determination
+
+# Installation
+
+If the function is part of your package `linregpack`, load it with:
+
+  ```r
+  library(linregpack)
+  # Sample data
+  x <- 1:10
+  y <- 2 + 3 * x + rnorm(10, 0, 1)
+  df <- data.frame(x = x, y = y)
+  
+  # Fit model
+  fit <- simple_lm(y ~ x, data = df)
+  
+  # Inspect results
+  fit$coefficients
+  fit$fitted.values
+  fit$residuals
+  fit$r_squared
+  
+  df <- data.frame(
+    y = 1:10 + rnorm(10),
+    x1 = 1:10,
+    x2 = 10:1
+  )
+  fit2 <- simple_lm(y ~ x1 + x2, data = df)
+  fit2$coefficients
+  fit2$r_squared
+  
+  # Observed vs fitted
+  plot(df$y, fit$fitted.values,
+       xlab = "Observed", ylab = "Fitted",
+       main = "Observed vs Fitted")
+  abline(a = 0, b = 1, col = "red", lty = 2)
+  ```
