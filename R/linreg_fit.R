@@ -1,3 +1,4 @@
+#' @export
 linreg_fit <- function(formula, data) {
   # Create model frame and matrices
   mf <- model.frame(formula, data)
