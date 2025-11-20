@@ -25,34 +25,46 @@ It returns a list containing:
 
 If the function is part of your package `linregpack`, load it with:
 
-  ```r
-  library(linregpack)
-  # Sample data
-  x <- 1:10
-  y <- 2 + 3 * x + rnorm(10, 0, 1)
-  df <- data.frame(x = x, y = y)
-  
-  # Fit model
-  fit <- simple_lm(y ~ x, data = df)
-  
-  # Inspect results
-  fit$coefficients
-  fit$fitted.values
-  fit$residuals
-  fit$r_squared
-  
-  df <- data.frame(
-    y = 1:10 + rnorm(10),
-    x1 = 1:10,
-    x2 = 10:1
-  )
-  fit2 <- simple_lm(y ~ x1 + x2, data = df)
-  fit2$coefficients
-  fit2$r_squared
-  
-  # Observed vs fitted
-  plot(df$y, fit$fitted.values,
-       xlab = "Observed", ylab = "Fitted",
-       main = "Observed vs Fitted")
-  abline(a = 0, b = 1, col = "red", lty = 2)
-  ```
+```{r}
+library(linregpack)
+
+# Sample data
+x <- 1:10
+y <- 2 + 3 * x + rnorm(10, 0, 1)
+df <- data.frame(x = x, y = y)
+
+# Fit model
+fit <- simple_lm(y ~ x, data = df)
+
+# Inspect results
+fit$coefficients
+fit$fitted.values
+fit$residuals
+fit$r_squared
+
+df <- data.frame(
+y = 1:10 + rnorm(10),
+x1 = 1:10,
+x2 = 10:1)
+
+fit2 <- simple_lm(y ~ x1 + x2, data = df)
+fit2$coefficients
+fit2$r_squared
+
+# Observed vs fitted
+plot(df$y, fit$fitted.values,
+     xlab = "Observed", ylab = "Fitted",
+     main = "Observed vs Fitted")
+abline(a = 0, b = 1, col = "red", lty = 2)
+```
+
+## Notes
+
+Purpose:
+'linreg_fit' is a simple linear regression function that works like lm(), supporting formulas and multiple predictors.
+
+Returned Components:
+- coefficients: Estimated regression coefficients for the intercept and predictors.
+- fitted.values: Predicted values of y based on the model.
+- residuals: Differences between observed y and predicted values.
+- r_squared: Coefficient of determination, measuring model fit.
