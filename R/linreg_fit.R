@@ -5,6 +5,13 @@ linreg_fit <- function(formula, data) {
   y <- model.response(mf)
   X <- model.matrix(attr(mf, "terms"), data = mf)
   
+  # Remove linearly dependent columns
+  qrX <- qr(X)
+  if (qrX$rank < ncol(X)) {
+    message("Some columns are linearly dependent and will be removed.")
+    X <- X[, qrX$pivot[1:qrX$rank], drop = FALSE]
+  }
+  
   # OLS coefficients
   beta <- solve(t(X) %*% X) %*% t(X) %*% y
   
