@@ -34,7 +34,7 @@ y <- 2 + 3 * x + rnorm(10, 0, 1)
 df <- data.frame(x = x, y = y)
 
 # Fit model
-fit <- simple_lm(y ~ x, data = df)
+fit <- linreg_fit(y ~ x, data = df)
 
 # Inspect results
 fit$coefficients
@@ -47,7 +47,7 @@ y = 1:10 + rnorm(10),
 x1 = 1:10,
 x2 = 10:1)
 
-fit2 <- simple_lm(y ~ x1 + x2, data = df)
+fit2 <- linreg_fit(y ~ x1 + x2, data = df)
 fit2$coefficients
 fit2$r_squared
 
