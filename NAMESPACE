@@ -1,5 +1,1 @@
 export(linreg_fit)
-export(linreg_predict)
-export(print.linregpack)
-export(summary.linregpack)
-export(predict.linregpack)
